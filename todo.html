@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>to-do-list</title>
+        <link rel="stylesheet" type="text/css" href ="todo.css">
+    </head>
+    <body>
+        <section>
+            <header>
+                <h1>My to-do-list!</h1>
+            </header>
+            <p>Date of the day:</p>
+            <input type="text" id="toDo" />
+            <input type="submit" value="ADD" onclick="addToDo()" />
+            <ul>
+                <li>Task 1 <span>x</span></li>
+                <li>Task 2 <span>x</span></li>
+                <li>Task 3 <span>x</span></li>
+                <li>Task 4 <span>x</span></li>
+            </ul>
+        </section>
+        <script>
+        var ul = document.getElementsByTagName("ul")[0];
+            var myList = document.getElementsByTagName("li");
+            var myListSpan = document.getElementsByTagName("span");
+
+            function checked()
+            {
+                var classLi = this.getAttribute("class");
+                if(classLi === "checked") this.setAttribute("class", "uncheked");
+                else this.setAttribute("class", "cheked");
+            }
+
+            function deleteToDo()
+            {
+                ul.removeChild(this.parentElement)
+            }
+
+            function addToDo()
+        {   
+            var todo = document.getElementById("toDo").value;
+            if (todo === "") alert("Add a new task");
+            else {
+            document.getElementById("toDo").value="";
+            var li = document.createElement("li");
+            li.innerHTML=todo;
+            li.addEventListener("click", checked)
+            var span = document.createElement("span");
+            span.innerHTML="x";
+            span.addEventListener("click", deleteToDo)
+            li.appendChild(span);
+            ul.appendChild(li);
+            }
+        }
+
+            for(var i=0; i < myList.length; i++) {
+                myListSpan[i].addEventListener("click", deleteToDo);
+                myList[i].addEventListener("click", checked)
+            }
+            
+        </script>
+    </body>
+
+</html>
+</html>
